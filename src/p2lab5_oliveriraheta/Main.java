@@ -60,9 +60,19 @@ public class Main extends javax.swing.JFrame {
         jl_info = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
         jd_simu = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        cb_player2 = new javax.swing.JComboBox<>();
+        cb_player1 = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
         ppm_universos = new javax.swing.JPopupMenu();
         mi_listar = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mi_mod = new javax.swing.JMenuItem();
+        mi_eliminar = new javax.swing.JMenuItem();
         jb_agregar = new javax.swing.JButton();
         jb_simu = new javax.swing.JButton();
         jb_listar = new javax.swing.JButton();
@@ -216,6 +226,12 @@ public class Main extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jt_personajes);
 
+        tf_Perso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_PersoActionPerformed(evt);
+            }
+        });
+
         jl_info.setModel(new DefaultListModel());
         jScrollPane2.setViewportView(jl_info);
 
@@ -262,23 +278,83 @@ public class Main extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
+        jPanel1.setBackground(new java.awt.Color(255, 0, 0));
+
+        cb_player2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DC", "MARVEL", "CAPCOM", "MK" }));
+
+        cb_player1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DC", "MARVEL", "CAPCOM", "MK" }));
+        cb_player1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb_player1MouseClicked(evt);
+            }
+        });
+        cb_player1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_player1ActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setText("PLAYER 2");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setText("PLAYER 1");
+
+        jScrollPane3.setViewportView(jList1);
+
+        jScrollPane4.setViewportView(jList2);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(186, 186, 186))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cb_player1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                    .addComponent(cb_player2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(116, 116, 116))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_player1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_player2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(255, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jd_simuLayout = new javax.swing.GroupLayout(jd_simu.getContentPane());
         jd_simu.getContentPane().setLayout(jd_simuLayout);
         jd_simuLayout.setHorizontalGroup(
             jd_simuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jd_simuLayout.setVerticalGroup(
             jd_simuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         mi_listar.setText("Listar");
-        mi_listar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mi_listarMouseClicked(evt);
-            }
-        });
         mi_listar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mi_listarActionPerformed(evt);
@@ -286,8 +362,11 @@ public class Main extends javax.swing.JFrame {
         });
         ppm_universos.add(mi_listar);
 
-        jMenuItem2.setText("jMenuItem2");
-        ppm_universos.add(jMenuItem2);
+        mi_mod.setText("Modificar");
+        ppm_universos.add(mi_mod);
+
+        mi_eliminar.setText("Eliminar");
+        ppm_universos.add(mi_eliminar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 0));
@@ -305,6 +384,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jb_simu.setText("Simulacion de Batalla");
+        jb_simu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_simuMouseClicked(evt);
+            }
+        });
 
         jb_listar.setText("Listado De Personajes");
         jb_listar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -381,7 +465,7 @@ public class Main extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(jd_agregar, "Personaje Agregado");
         tf_name.setText("");
-        tf_Perso.setText("");
+        tf_poder.setText("");
         tf_debilidad.setText("");
         cb_universo.setSelectedIndex(0);
         js_Vida.setValue(0);
@@ -421,7 +505,7 @@ public class Main extends javax.swing.JFrame {
     private void jt_personajesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_personajesMouseClicked
 
         if (evt.isMetaDown()) {
-
+            tf_Perso.setText("");
             int row = jt_personajes.getClosestRowForLocation(evt.getX(), evt.getY());
             jt_personajes.setSelectionRow(row);
             Object v1 = jt_personajes.getSelectionPath().getLastPathComponent();
@@ -453,18 +537,61 @@ public class Main extends javax.swing.JFrame {
 
     private void mi_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_listarActionPerformed
         // TODO add your handling code here:
-//        DefaultListModel modelo = (DefaultListModel) jl_info.getModel();
-//        modelo.clear();
-//        modelo.addElement(nodo_seleccionado.getUserObject());
-    }//GEN-LAST:event_mi_listarActionPerformed
-
-    private void mi_listarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mi_listarMouseClicked
-        // TODO add your handling code here:
         DefaultListModel modelo = (DefaultListModel) jl_info.getModel();
         modelo.clear();
-        modelo.addElement(nodo_seleccionado.getUserObject());
-    }//GEN-LAST:event_mi_listarMouseClicked
+        modelo.addElement("Poder -> " + personaje_sele.getPoder());
+        modelo.addElement("Debilidad -> " + personaje_sele.getDebilidad());
+        modelo.addElement("Universo -> " + personaje_sele.getUniverso());
+        modelo.addElement("Agilidad Fisica -> " + personaje_sele.getAgilidad_fisica());
+        modelo.addElement("Agilidad Mental -> " + personaje_sele.getAgilidad_mental());
+        modelo.addElement("Fuerza -> " + personaje_sele.getVida());
+        modelo.addElement("Vida -> " + personaje_sele.getFuerza());
+        tf_Perso.setText(personaje_sele.getName());
 
+        jl_info.setModel(modelo);
+
+    }//GEN-LAST:event_mi_listarActionPerformed
+
+    private void tf_PersoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_PersoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_PersoActionPerformed
+
+    private void jb_simuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_simuMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        jd_simu.pack();//le pone el tamanio original a la subventana 
+        jd_simu.setLocationRelativeTo(null);
+        jd_simu.setVisible(true);
+        setModelList();
+    }//GEN-LAST:event_jb_simuMouseClicked
+
+    private void cb_player1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_player1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cb_player1ActionPerformed
+
+    private void cb_player1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb_player1MouseClicked
+        // TODO add your handling code here:
+        setModelList();
+    }//GEN-LAST:event_cb_player1MouseClicked
+    
+    public void setModelList(){
+        DefaultListModel model1 =  (DefaultListModel) jList1.getModel();
+        DefaultListModel model2 = (DefaultListModel) jList2.getModel();
+
+        for (Personaje p : personajes) {
+            System.out.println("aaaaa");
+            if (p.getUniverso().equals(cb_player1.getSelectedItem().toString())) {
+                model1.addElement(p.getName());
+            }
+            if (p.getUniverso().equals(cb_player2.getSelectedItem().toString())) {
+                model2.addElement(p.getName());
+            }
+        }
+        jList1.setModel(model1);
+        jList2.setModel(model2);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -501,9 +628,13 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_player1;
+    private javax.swing.JComboBox<String> cb_player2;
     private javax.swing.JComboBox<String> cb_universo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -512,9 +643,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jb_AGREGAR;
     private javax.swing.JButton jb_agregar;
     private javax.swing.JButton jb_listar;
@@ -528,7 +663,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSpinner js_agMental;
     private javax.swing.JSpinner js_fuerza;
     private javax.swing.JTree jt_personajes;
+    private javax.swing.JMenuItem mi_eliminar;
     private javax.swing.JMenuItem mi_listar;
+    private javax.swing.JMenuItem mi_mod;
     private javax.swing.JPopupMenu ppm_universos;
     private javax.swing.JTextField tf_Perso;
     private javax.swing.JTextField tf_debilidad;
