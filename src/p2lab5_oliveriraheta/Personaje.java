@@ -14,17 +14,6 @@ public class Personaje {
         this.bandera = bandera;
     }
 
-    public Personaje(String name, String poder, String debilidad, String universo, double agilidad_fisica, double agilidad_mental, double fuerza, double vida, int bandera) {
-        this.name = name;
-        this.poder = poder;
-        this.debilidad = debilidad;
-        this.universo = universo;
-        this.agilidad_fisica = agilidad_fisica;
-        this.agilidad_mental = agilidad_mental;
-        this.fuerza = fuerza;
-        this.vida = vida;
-        this.bandera = bandera;
-    }
 
     public Personaje(String name, String poder, String debilidad, String universo, double agilidad_fisica, double agilidad_mental, double fuerza, double vida) {
         this.name = name;
@@ -103,16 +92,16 @@ public class Personaje {
 
     @Override
     public String toString() {
-        if (bandera != 0) {
+        //if (bandera != 0) {
             return name;
-        }
-        return " Poder -> " + poder
-                + "\n Debilidad -> " + debilidad
-                + "\n Universo -> " + universo
-                + "\n Agilidad Fisica -> " + agilidad_fisica
-                + "\n Agilidad Mental -> " + agilidad_mental
-                + "\n Fuerza -> " + fuerza
-                + "\n Vida -> " + vida;
+        //}
+//        return " Poder -> " + poder
+//                + "\n Debilidad -> " + debilidad
+//                + "\n Universo -> " + universo
+//                + "\n Agilidad Fisica -> " + agilidad_fisica
+//                + "\n Agilidad Mental -> " + agilidad_mental
+//                + "\n Fuerza -> " + fuerza
+//                + "\n Vida -> " + vida;
     }
 
 }

@@ -363,9 +363,19 @@ public class Main extends javax.swing.JFrame {
         ppm_universos.add(mi_listar);
 
         mi_mod.setText("Modificar");
+        mi_mod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_modActionPerformed(evt);
+            }
+        });
         ppm_universos.add(mi_mod);
 
         mi_eliminar.setText("Eliminar");
+        mi_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_eliminarActionPerformed(evt);
+            }
+        });
         ppm_universos.add(mi_eliminar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -459,7 +469,7 @@ public class Main extends javax.swing.JFrame {
                 (Integer) js_agFisica.getValue(),
                 (Integer) js_agMental.getValue(),
                 (Integer) js_fuerza.getValue(),
-                (Integer) js_Vida.getValue(), 1));
+                (Integer) js_Vida.getValue()));
 
         nodo_universo.add(nodo_personaje);
 
@@ -562,36 +572,73 @@ public class Main extends javax.swing.JFrame {
         jd_simu.pack();//le pone el tamanio original a la subventana 
         jd_simu.setLocationRelativeTo(null);
         jd_simu.setVisible(true);
-        setModelList();
+
     }//GEN-LAST:event_jb_simuMouseClicked
 
     private void cb_player1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_player1ActionPerformed
         // TODO add your handling code here:
-        
+        DefaultListModel modelo
+                = (DefaultListModel) jList1.getModel();
+        for (Personaje p : personajes) {
+            System.out.println("aaaaa");
+            if (p.getUniverso().equals(cb_player1.getSelectedItem().toString())) {
+                modelo.addElement(p.getName());
+            }
+        }
+        jList1.setModel(modelo);
+
     }//GEN-LAST:event_cb_player1ActionPerformed
 
     private void cb_player1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb_player1MouseClicked
         // TODO add your handling code here:
-        setModelList();
-    }//GEN-LAST:event_cb_player1MouseClicked
-    
-    public void setModelList(){
-        DefaultListModel model1 =  (DefaultListModel) jList1.getModel();
-        DefaultListModel model2 = (DefaultListModel) jList2.getModel();
 
-        for (Personaje p : personajes) {
-            System.out.println("aaaaa");
-            if (p.getUniverso().equals(cb_player1.getSelectedItem().toString())) {
-                model1.addElement(p.getName());
-            }
-            if (p.getUniverso().equals(cb_player2.getSelectedItem().toString())) {
-                model2.addElement(p.getName());
+    }//GEN-LAST:event_cb_player1MouseClicked
+
+    private void mi_modActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_modActionPerformed
+        // TODO add your handling code here:
+        int opc = Integer.parseInt(JOptionPane.showInputDialog(jd_listado, """
+                                                        1. Nombre
+                                                        2. Poder
+                                                        3. Debilidad
+                                                        4. Universo"""));
+        switch (opc) {
+            case 1 ->
+                personaje_sele.setName(JOptionPane.showInputDialog(jd_listado, "Nuevo nombre"));
+            case 2 ->
+                personaje_sele.setPoder(JOptionPane.showInputDialog(jd_listado, "Nuevo poder"));
+            case 3 ->
+                personaje_sele.setDebilidad(JOptionPane.showInputDialog(jd_listado, "Nueva Debilidad"));
+            case 4 -> {
+                String universo = JOptionPane.showInputDialog(jd_listado, "Nuevo Universo").toUpperCase();
+                if (universo.equals("DC")|| universo.equals("MARVEL") || universo.equals("CAPCOM")|| universo.equals("MK")) {
+                    personaje_sele.setUniverso(universo);
+                }else{
+                    JOptionPane.showMessageDialog(jd_listado,"UNIVERSO NO ENCONTRADO");
+                }
+                
             }
         }
-        jList1.setModel(model1);
-        jList2.setModel(model2);
-    }
-    
+
+    }//GEN-LAST:event_mi_modActionPerformed
+
+    private void mi_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_eliminarActionPerformed
+        // TODO add your handling code here:
+        String personajess = "";
+        for (Personaje per : personajes) {
+            personajess+=personajes.indexOf(per)+")"+per.getName()+"\n";
+        }
+        int pos = Integer.parseInt(JOptionPane.showInputDialog(jd_listado,"Ingrese posicion\n"+personajess));
+        if (pos>=0 && pos<personajes.size()) {
+            personajes.remove(pos);
+            JOptionPane.showMessageDialog(jd_listado,"ELIMINADO");
+        }else{
+            JOptionPane.showMessageDialog(jd_listado,"Posicion NO valida");
+        }
+        //no lo borro del jtree 
+        //tenia suenio perdon
+    }//GEN-LAST:event_mi_eliminarActionPerformed
+
+
     /**
      * @param args the command line arguments
      */
